@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from "react-router-dom"
 const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,9 +26,10 @@ const RegisterPage = () => {
     });
 
     if (response.ok) {
-      console.log('Registration successful');
+      console.log(await response.json());
+      navigate("/signin")
     } else {
-      console.error('Registration failed');
+      console.error(await response.json());
     }
   };
 

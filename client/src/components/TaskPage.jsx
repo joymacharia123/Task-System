@@ -6,12 +6,27 @@ import EditTaskForm from './EditTaskForm';
 const TaskPage = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
+  const [ users, setUsers ] = useState([])
+
+  const fetchUsers = async ()=>{
+    const response = await fetch("http://127.0.0.1:8000/api/users/")
+    const data = await response.json()
+    if (response.ok){
+      console.log(data)
+      setUsers(data)
+    } else {
+      console.error(data)
+    
+  }
+}
 
   useEffect(() => {
     // Fetch tasks from API
     fetch('http://127.0.0.1:8000/api/tasks/')
       .then(response => response.json())
       .then(data => setTasks(data));
+
+    fetchUsers()
   }, []);
 
   const addTask = (task) => {
@@ -54,7 +69,7 @@ const TaskPage = () => {
       ) : (
         <TaskForm addTask={addTask} />
       )}
-      <TaskList tasks={tasks} onEdit={setEditingTask} onDelete={deleteTask} onCompleteChange={completeTask} />
+      <TaskList users={users} tasks={tasks} onEdit={setEditingTask} onDelete={deleteTask} onCompleteChange={completeTask} />
     </div>
   );
 };
