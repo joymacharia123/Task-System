@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-const TaskForm = ({ addTask }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [deadline, setDeadline] = useState('');
-  const [assignedTo, setAssignedTo] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
+const EditTaskForm = ({ task, onUpdate, onCancel }) => {
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [deadline, setDeadline] = useState(task.deadline);
+  const [assignedTo, setAssignedTo] = useState(task.assigned_to);
+  const [isComplete, setIsComplete] = useState(task.is_complete);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = {
+    const updatedTask = {
+      ...task,
       title,
       description,
       deadline,
@@ -17,21 +18,17 @@ const TaskForm = ({ addTask }) => {
       is_complete: isComplete,
     };
 
-    fetch('http://127.0.0.1:8000/api/tasks/', {
-      method: 'POST',
+    fetch(`http://127.0.0.1:8000/api/tasks/${task.id}/`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(updatedTask),
     })
       .then(response => response.json())
       .then(data => {
-        addTask(data);
-        setTitle('');
-        setDescription('');
-        setDeadline('');
-        setAssignedTo('');
-        setIsComplete(false);
+        onUpdate(data);
+        onCancel();
       });
   };
 
@@ -57,7 +54,10 @@ const TaskForm = ({ addTask }) => {
           <input type="text" className="form-control" value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} style={styles.input} />
         </div>
       </div>
-      <button type="submit" className="btn btn-primary" style={styles.button}>Add Task</button>
+      <div style={styles.buttonRow}>
+        <button type="submit" className="btn btn-primary" style={styles.button}>Update Task</button>
+        <button type="button" className="btn btn-secondary" onClick={onCancel} style={styles.button}>Cancel</button>
+      </div>
     </form>
   );
 };
@@ -126,6 +126,12 @@ const styles = {
     marginTop: '20px',
     padding: '10px 20px',
   },
+  buttonRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: '20px',
+  },
 };
 
-export default TaskForm;
+export default EditTaskForm;

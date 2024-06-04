@@ -10,13 +10,13 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/register/', {
+    const response = await fetch('http://127.0.0.1:8000/api/register/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username,
+        username: username,
         password,
         first_name: firstName,
         last_name: lastName,
@@ -25,62 +25,124 @@ const RegisterPage = () => {
     });
 
     if (response.ok) {
-
       console.log('Registration successful');
     } else {
-    
       console.error('Registration failed');
     }
   };
 
   return (
-    <div className="container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>First Name</label>
-          <input
-            type="text"
-            className="form-control"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Last Name</label>
-          <input
-            type="text"
-            className="form-control"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <h2 style={styles.heading}>Register</h2>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <div className="form-group" style={styles.formGroup}>
+            <label style={styles.label}>Username</label>
+            <input
+              type="text"
+              className="form-control"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div className="form-group" style={styles.formGroup}>
+            <label style={styles.label}>First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div className="form-group" style={styles.formGroup}>
+            <label style={styles.label}>Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div className="form-group" style={styles.formGroup}>
+            <label style={styles.label}>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <div className="form-group" style={styles.formGroup}>
+            <label style={styles.label}>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary" style={styles.button}>Register</button>
+        </form>
+      </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    backgroundColor: 'black',
+    padding: '40px',
+    borderRadius: '10px',
+    color: 'white',
+    maxWidth: '500px',
+    width: '100%',
+    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+    
+  },
+  heading: {
+    textAlign: 'center',
+    marginBottom: '20px',
+    color: '#7767D8',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  formGroup: {
+    marginBottom: '15px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  label: {
+    marginBottom: '5px',
+    color: '#7767D8',
+  },
+  input: {
+    backgroundColor: 'black',
+    color: 'white',
+    border: '1px solid #7767D8',
+    borderRadius: '5px',
+    padding: '10px',
+  },
+  button: {
+    backgroundColor: '#7767D8',
+    borderColor: '#7767D8',
+    color: 'black',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    marginTop: '10px',
+  },
 };
 
 export default RegisterPage;

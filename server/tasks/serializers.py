@@ -12,19 +12,20 @@ class TaskSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name','last_name', 'email']
+        fields = ['id', 'first_name','username','last_name', 'email']
 
 # Serializer for user registration
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'password', 'first_name', 'last_name', 'email']
+        fields = ['id', 'password', 'first_name','username', 'last_name', 'email']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
     def create(self, validated_data):
         user = User.objects.create_user(
+            username=validated_data['first_name'],
             password=validated_data['password'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
