@@ -5,6 +5,8 @@ import './App.css';
 function App() {
   const [isRegistered, setIsRegistered] = useState(null);
 
+  const year = new Date().getFullYear()
+
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -33,7 +35,7 @@ function App() {
         )}
       </main>
       <footer style={styles.footer}>
-        <p>&copy; 2024 Task App. All rights reserved.</p>
+        <p>&copy; { year } Task App. All rights reserved.</p>
       </footer>
     </div>
   );
