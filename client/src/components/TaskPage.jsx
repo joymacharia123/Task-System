@@ -66,7 +66,6 @@ const styles = {
     color: 'white',
     padding: '20px',
     borderRadius: '10px',
-    marginLeft: '450px'
   },
   header: {
     marginLeft: '270px',
