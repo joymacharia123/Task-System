@@ -41,15 +41,16 @@
 }
 
 .link:hover {
-  background-color: #8e44ad;
+  background-color: white;
   color: white;
   transform: scale(1.05);
 }
 
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-image: url(/client/src/assets/image.webp);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-image: url(../src/assets/abstract-multicolor-wavy-line-light_.avif);
+  background-size: contain;
   color: white;
   display: flex;
   align-items: center;

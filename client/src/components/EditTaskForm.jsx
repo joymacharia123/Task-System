@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const EditTaskForm = ({ task, onUpdate, onCancel }) => {
   const [title, setTitle] = useState(task.title);
@@ -6,6 +6,7 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
   const [deadline, setDeadline] = useState(task.deadline);
   const [assignedTo, setAssignedTo] = useState(task.assigned_to);
   const [isComplete, setIsComplete] = useState(task.is_complete);
+  const [ users, setUsers ] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +33,21 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
       });
   };
 
+  const fetchUsers = async ()=>{
+    const response = await fetch("http://127.0.0.1:8000/api/users/")
+    const data = await response.json()
+    if (response.ok){
+      console.log(data)
+      setUsers(data)
+    } else {
+      console.error(data)
+    }
+  }
+
+  useEffect(()=>{
+    fetchUsers()
+}, [])
+
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
       <div style={styles.formRow}>
@@ -51,7 +67,15 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
         </div>
         <div className="form-group" style={styles.formGroup}>
           <label style={styles.label}>Assign to</label>
-          <input type="text" className="form-control" value={assignedTo} onChange={(e) => setAssignedTo(e.target.value)} style={styles.input} />
+          <select onChange={(e)=>setAssignedTo(e.target.value)} value={assignedTo}>
+            <option value="">Select a user</option>
+            {
+              users.map((user)=>{
+                return <option key={user.id} value={user.id}>{user.username}</option>
+              
+              })
+            }
+          </select>
         </div>
       </div>
       <div style={styles.buttonRow}>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
+import backgroundImage from './assets/image.webp'; // I
 
 function App() {
   const [isRegistered, setIsRegistered] = useState(null);
@@ -10,7 +11,7 @@ function App() {
   return (
     <div style={styles.container}>
       <header style={styles.header}>
-        <h1 style={styles.heading}>Welcome to Task App</h1>
+        <h1 style={styles.heading}>Welcome to Nexta</h1>
         <p style={styles.welcomeText}>
           Your ultimate task management solution. Stay organized, stay productive!
         </p>
@@ -35,7 +36,7 @@ function App() {
         )}
       </main>
       <footer style={styles.footer}>
-        <p>&copy; { year } Task App. All rights reserved.</p>
+        <p>&copy; { year } Nexta. All rights reserved.</p>
       </footer>
     </div>
   );
@@ -43,7 +44,7 @@ function App() {
 
 const styles = {
   container: {
-    backgroundColor: '#1c1c1c',
+    backgroundColor: 'rgba(0,0,0,0.8)',
     color: 'white',
     padding: '40px 20px',
     borderRadius: '10px',
