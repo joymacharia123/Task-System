@@ -46,7 +46,7 @@ const TaskPage = () => {
   };
 
   const completeTask = (taskId, isComplete) => {
-    fetch(`http://127.0.0.1:8000/api/tasks/${taskId}/`, {
+    fetch(`http://127.0.0.1:8000/api/tasks/${taskId}/update_status/`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -55,11 +55,19 @@ const TaskPage = () => {
     })
       .then(response => response.json())
       .then(updatedTask => {
-        setTasks(tasks.map(task =>
-          task.id === taskId ? updatedTask : task
-        ));
+        if (updatedTask.id) {
+          setTasks(tasks.map(task =>
+            task.id === taskId ? updatedTask : task
+          ));
+        } else {
+          console.error("Failed to update task status", updatedTask);
+        }
+      })
+      .catch(error => {
+        console.error("Error updating task status", error);
       });
   };
+  
 
   return (
     <div className="container" style={styles.container}>
@@ -85,7 +93,7 @@ const styles = {
   header: {
     marginLeft: '270px',
     fontSize: '40px',
-    color: '#7767D8',
+    color: '#8E44AD',
   },
 };
 

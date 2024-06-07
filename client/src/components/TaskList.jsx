@@ -17,7 +17,7 @@ const TaskList = ({ tasks, onEdit, onDelete, onCompleteChange, users }) => (
               <h2 style={styles.title}>{task.title}</h2>
               <h5 style={styles.description}>{task.description}</h5>
               <small style={styles.deadline}>
-                Deadline: {new Date(task.deadline).toLocaleString()}
+                Deadline: {task.deadline ? new Date(task.deadline).toLocaleString() : "No deadline"}
               </small>
               <br />
               <small style={styles.assignedTo}>
@@ -61,6 +61,7 @@ const TaskList = ({ tasks, onEdit, onDelete, onCompleteChange, users }) => (
   </ul>
 );
 
+
 const styles = {
   listGroup: {
     backgroundColor: "black",
@@ -69,10 +70,10 @@ const styles = {
   },
   listGroupItem: {
     backgroundColor: "black",
-    color: "#7767D8",
+    color: "#8E44AD",
     marginBottom: "10px",
     padding: "15px",
-    border: "1px, solid, #7767D8",
+    border: "1px, solid, #8E44AD",
     borderRadius: "5px",
     display: "flex",
     justifyContent: "space-between",
@@ -113,10 +114,10 @@ const styles = {
     marginRight: "10px",
   },
   checkboxLabel: {
-    color: "#7767D8",
+    color: "#8E44AD",
   },
   iconButton: {
-    backgroundColor: "#7767D8",
+    backgroundColor: "#8E44AD",
     color: "black",
     fontSize: "20px",
     marginTop: "5px",

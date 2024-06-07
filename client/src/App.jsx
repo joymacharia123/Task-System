@@ -46,7 +46,7 @@ const styles = {
   container: {
     backgroundColor: 'rgba(0,0,0,0.8)',
     color: 'white',
-    padding: '40px 20px',
+    padding: '100px 20px',
     borderRadius: '10px',
     textAlign: 'center',
     boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)',

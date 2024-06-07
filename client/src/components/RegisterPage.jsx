@@ -114,7 +114,7 @@ const styles = {
   heading: {
     textAlign: 'center',
     marginBottom: '20px',
-    color: '#7767D8',
+    color: '#8E44AD',
   },
   form: {
     display: 'flex',
@@ -127,19 +127,19 @@ const styles = {
   },
   label: {
     marginBottom: '5px',
-    color: '#7767D8',
+    color: '#8E44AD',
   },
   input: {
     backgroundColor: 'black',
     color: 'white',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     borderRadius: '5px',
     padding: '10px',
   },
   button: {
-    backgroundColor: '#7767D8',
-    borderColor: '#7767D8',
-    color: 'black',
+    backgroundColor: '#8E44AD',
+    borderColor: '#8E44AD',
+    color: 'white',
     padding: '10px 20px',
     borderRadius: '5px',
     cursor: 'pointer',

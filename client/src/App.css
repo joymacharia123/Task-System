@@ -40,20 +40,37 @@
   }
 }
 
+.link{
+  color: #8E44AD;
+}
+
 .link:hover {
   background-color: white;
-  color: white;
+  color: #8E44AD;
   transform: scale(1.05);
 }
 
 body {
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  background-image: url(../src/assets/abstract-multicolor-wavy-line-light_.avif);
-  background-size: contain;
+  background-image: url('../src/assets/photo-1600673645627-1c47394132ac.avif');
+  background-size: cover; /* This ensures the image covers the entire background */
+  background-attachment: fixed; /* This keeps the image fixed when scrolling */
+  background-repeat: no-repeat; /* Ensures the image doesn't repeat */
   color: white;
   display: flex;
+  flex-direction: column; /* Allows content to flow vertically */
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start; /* Aligns content to the top */
+  min-height: 100vh; /* Ensures body takes at least the full viewport height */
+  padding: 20px; /* Optional: Add some padding for content spacing */
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Optional: Set a max width for your content */
+  animation: fadeIn 1s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.6); /* Optional: Adds a slight background to improve text readability */
+  padding: 20px;
+  border-radius: 10px;
 }

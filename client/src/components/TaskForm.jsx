@@ -89,7 +89,7 @@ const TaskForm = ({ addTask }) => {
 const styles = {
   form: {
     backgroundColor: 'black',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '20px',
     borderRadius: '10px',
     color: 'white',
@@ -118,19 +118,19 @@ const styles = {
     margin: '10px',
   },
   label: {
-    color: '#7767D8',
+    color: '#8E44AD',
     marginBottom: '5px',
   },
   input: {
     backgroundColor: 'black',
     color: 'white',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '5px',
   },
   textarea: {
     backgroundColor: 'black',
     color: 'white',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '5px',
     minHeight: '100px',
   },
@@ -143,8 +143,8 @@ const styles = {
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#7767D8',
-    borderColor: '#7767D8',
+    backgroundColor: '#8E44AD',
+    borderColor: '#8E44AD',
     color: 'black',
     alignSelf: 'center',
     marginTop: '20px',

@@ -60,7 +60,7 @@ const SignInPage = () => {
           Sign In
         </button>
       </form>
-      <Link to="/register">Don't have an Account? Sign Up</Link>
+      <Link className="link" to="/register">Don't have an Account? Sign Up</Link>
     </div>
   );
 };
@@ -68,7 +68,7 @@ const SignInPage = () => {
 const styles = {
   container: {
     backgroundColor: "black",
-    padding: "40px",
+    padding: "100px",
     borderRadius: "10px",
     color: "white",
     maxWidth: "500px",
@@ -78,7 +78,7 @@ const styles = {
   heading: {
     textAlign: "center",
     marginBottom: "20px",
-    color: "#7767D8",
+    color: "#8E44AD",
   },
   form: {
     display: "flex",
@@ -91,24 +91,31 @@ const styles = {
   },
   label: {
     marginBottom: "5px",
-    color: "#7767D8",
+    color: "#8E44AD",
   },
   input: {
     backgroundColor: "black",
     color: "white",
-    border: "1px solid #7767D8",
+    border: "1px solid #8E44AD",
     borderRadius: "5px",
     padding: "10px",
   },
   button: {
-    backgroundColor: "#7767D8",
-    borderColor: "#7767D8",
-    color: "black",
+    backgroundColor: "#8E44AD",
+    borderColor: "#8E44AD",
+    color: "white",
     padding: "10px 20px",
     borderRadius: "5px",
     cursor: "pointer",
     marginTop: "10px",
   },
+  link: {
+    color: "#8E44AD",
+    textDecoration: "none",
+    textDecoration: "underline" /* Optional: Removes the underline from the link */
+  },
+  
+
 };
 
 export default SignInPage;

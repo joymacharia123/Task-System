@@ -6,7 +6,16 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
   const [deadline, setDeadline] = useState(task.deadline);
   const [assignedTo, setAssignedTo] = useState(task.assigned_to);
   const [isComplete, setIsComplete] = useState(task.is_complete);
-  const [ users, setUsers ] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Reset state when task prop changes
+    setTitle(task.title);
+    setDescription(task.description);
+    setDeadline(task.deadline);
+    setAssignedTo(task.assigned_to);
+    setIsComplete(task.is_complete);
+  }, [task]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,24 +38,24 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
       .then(response => response.json())
       .then(data => {
         onUpdate(data);
-        onCancel();
+        // Optionally reset state or handle other post-update logic here
       });
   };
 
-  const fetchUsers = async ()=>{
-    const response = await fetch("http://127.0.0.1:8000/api/users/")
-    const data = await response.json()
-    if (response.ok){
-      console.log(data)
-      setUsers(data)
+  const fetchUsers = async () => {
+    const response = await fetch("http://127.0.0.1:8000/api/users/");
+    const data = await response.json();
+    if (response.ok) {
+      console.log(data);
+      setUsers(data);
     } else {
-      console.error(data)
+      console.error(data);
     }
-  }
+  };
 
-  useEffect(()=>{
-    fetchUsers()
-}, [])
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
@@ -67,14 +76,11 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
         </div>
         <div className="form-group" style={styles.formGroup}>
           <label style={styles.label}>Assign to</label>
-          <select onChange={(e)=>setAssignedTo(e.target.value)} value={assignedTo}>
+          <select onChange={(e) => setAssignedTo(e.target.value)} value={assignedTo} style={styles.input}>
             <option value="">Select a user</option>
-            {
-              users.map((user)=>{
-                return <option key={user.id} value={user.id}>{user.username}</option>
-              
-              })
-            }
+            {users.map((user) => {
+              return <option key={user.id} value={user.id}>{user.username}</option>;
+            })}
           </select>
         </div>
       </div>
@@ -89,7 +95,7 @@ const EditTaskForm = ({ task, onUpdate, onCancel }) => {
 const styles = {
   form: {
     backgroundColor: 'black',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '20px',
     borderRadius: '10px',
     color: 'white',
@@ -118,19 +124,19 @@ const styles = {
     margin: '10px',
   },
   label: {
-    color: '#7767D8',
+    color: '#8E44AD',
     marginBottom: '5px',
   },
   input: {
     backgroundColor: 'black',
     color: 'white',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '5px',
   },
   textarea: {
     backgroundColor: 'black',
     color: 'white',
-    border: '1px solid #7767D8',
+    border: '1px solid #8E44AD',
     padding: '5px',
     minHeight: '100px',
   },
@@ -143,8 +149,8 @@ const styles = {
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#7767D8',
-    borderColor: '#7767D8',
+    backgroundColor: '#8E44AD',
+    borderColor: '#8E44AD',
     color: 'black',
     alignSelf: 'center',
     marginTop: '20px',
